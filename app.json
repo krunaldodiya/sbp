@@ -1,0 +1,17 @@
+{
+  "name": "streamly",
+  "displayName": "streamly",
+  "expo": {
+    "name": "streamly",
+    "slug": "streamly",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
