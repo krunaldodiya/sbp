@@ -130,7 +130,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.streamly"
+        applicationId "com.sbp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -1,4 +1,4 @@
-rootProject.name = 'streamly'
+rootProject.name = 'sbp'
 
 apply from: '../node_modules/react-native-unimodules/gradle.groovy'
 includeUnimodulesProjects()

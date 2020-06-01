@@ -1,4 +1,4 @@
-package com.streamly;
+package com.sbp;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

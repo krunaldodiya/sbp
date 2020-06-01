@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>streamly</string>
+	<string>sbp</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -57,26 +57,26 @@
 		</dict>
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>Allow streamly to access your calendar</string>
+	<string>Allow sbp to access your calendar</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Allow streamly to use the camera</string>
+	<string>Allow sbp to use the camera</string>
 	<key>NSContactsUsageDescription</key>
-	<string>Allow streamly experiences to access your contacts</string>
+	<string>Allow sbp experiences to access your contacts</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Allow streamly to use your location</string>
+	<string>Allow sbp to use your location</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Allow streamly to use your location</string>
+	<string>Allow sbp to use your location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Allow streamly to use your location</string>
+	<string>Allow sbp to use your location</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Allow streamly to access your microphone</string>
+	<string>Allow sbp to access your microphone</string>
 	<key>NSMotionUsageDescription</key>
-	<string>Allow streamly to access your device's accelerometer</string>
+	<string>Allow sbp to access your device's accelerometer</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Give streamly periences permission to save photos</string>
+	<string>Give sbp periences permission to save photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Give streamly periences permission to access your photos</string>
+	<string>Give sbp periences permission to access your photos</string>
 	<key>NSRemindersUsageDescription</key>
-	<string>Allow streamly to access your reminders</string>
+	<string>Allow sbp to access your reminders</string>
 </dict>
 </plist>
