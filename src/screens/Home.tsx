@@ -1,6 +1,12 @@
 import axios from "axios";
 import React from "react";
-import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  Text,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import { useQuery } from "react-query";
 import { apiUrl } from "../libs/vars";
 
@@ -32,16 +38,17 @@ export default function Home(props: any) {
         }}
       >
         <View>
-          <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+          <Text style={{ fontSize: 16, fontWeight: "bold" }}>
             {item.question}
           </Text>
         </View>
+
         <View style={{ marginTop: 5 }}>
           <Text
             style={{
               marginTop: 5,
-              fontWeight: 600,
-              fontSize: 14,
+              fontWeight: "600",
+              fontSize: 12,
               color: getColor("option_1", item.answer),
             }}
           >
@@ -50,8 +57,8 @@ export default function Home(props: any) {
           <Text
             style={{
               marginTop: 5,
-              fontWeight: 600,
-              fontSize: 14,
+              fontWeight: "600",
+              fontSize: 12,
               color: getColor("option_2", item.answer),
             }}
           >
@@ -60,8 +67,8 @@ export default function Home(props: any) {
           <Text
             style={{
               marginTop: 5,
-              fontWeight: 600,
-              fontSize: 14,
+              fontWeight: "600",
+              fontSize: 12,
               color: getColor("option_3", item.answer),
             }}
           >
@@ -70,8 +77,8 @@ export default function Home(props: any) {
           <Text
             style={{
               marginTop: 5,
-              fontWeight: 600,
-              fontSize: 14,
+              fontWeight: "600",
+              fontSize: 12,
               color: getColor("option_4", item.answer),
             }}
           >
@@ -84,15 +91,52 @@ export default function Home(props: any) {
 
   return (
     <View style={{ flex: 1, backgroundColor: "#ddd" }}>
-      <FlatList
-        keyExtractor={(item: any, index: number) => index.toString()}
-        data={data.questions.data}
-        renderItem={RenderQuestions}
-        onEndReached={() => {
-          console.log("test");
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "row",
+          justifyContent: "space-around",
+          padding: 10,
         }}
-        onEndReachedThreshold={0}
-      />
+      >
+        <TouchableOpacity onPress={() => props.navigation.push("Categories")}>
+          <Text
+            style={{
+              marginTop: 5,
+              fontWeight: "600",
+              fontSize: 12,
+              textTransform: "uppercase",
+            }}
+          >
+            category
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => props.navigation.push("Languages")}>
+          <Text
+            style={{
+              marginTop: 5,
+              fontWeight: "600",
+              fontSize: 12,
+              textTransform: "uppercase",
+            }}
+          >
+            language
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <View>
+        <FlatList
+          keyExtractor={(item: any, index: number) => index.toString()}
+          data={data.questions.data}
+          renderItem={RenderQuestions}
+          onEndReached={() => console.log("test")}
+          initialNumToRender={8}
+          maxToRenderPerBatch={2}
+          onEndReachedThreshold={0.5}
+        />
+      </View>
     </View>
   );
 }
