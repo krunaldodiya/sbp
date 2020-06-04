@@ -121,7 +121,7 @@ export default function Home(props: any) {
               textTransform: "uppercase",
             }}
           >
-            category
+            {selectedCategory ? selectedCategory.name : "Any Category"}
           </Text>
         </TouchableOpacity>
 
@@ -134,7 +134,7 @@ export default function Home(props: any) {
               textTransform: "uppercase",
             }}
           >
-            language
+            {selectedLanguage ? selectedLanguage.name : "English"}
           </Text>
         </TouchableOpacity>
       </View>
