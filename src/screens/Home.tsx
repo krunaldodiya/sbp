@@ -6,6 +6,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  SafeAreaView,
 } from "react-native";
 import { useQuery } from "react-query";
 import { apiUrl } from "../libs/vars";
@@ -90,10 +91,9 @@ export default function Home(props: any) {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#ddd" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#ddd" }}>
       <View
         style={{
-          flex: 1,
           flexDirection: "row",
           justifyContent: "space-around",
           padding: 10,
@@ -103,8 +103,8 @@ export default function Home(props: any) {
           <Text
             style={{
               marginTop: 5,
-              fontWeight: "600",
-              fontSize: 12,
+              fontWeight: "700",
+              fontSize: 14,
               textTransform: "uppercase",
             }}
           >
@@ -116,8 +116,8 @@ export default function Home(props: any) {
           <Text
             style={{
               marginTop: 5,
-              fontWeight: "600",
-              fontSize: 12,
+              fontWeight: "700",
+              fontSize: 14,
               textTransform: "uppercase",
             }}
           >
@@ -126,7 +126,7 @@ export default function Home(props: any) {
         </TouchableOpacity>
       </View>
 
-      <View>
+      <View style={{ flex: 1 }}>
         <FlatList
           keyExtractor={(item: any, index: number) => index.toString()}
           data={data.questions.data}
@@ -137,6 +137,6 @@ export default function Home(props: any) {
           onEndReachedThreshold={0.5}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
