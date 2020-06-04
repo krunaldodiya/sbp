@@ -1,7 +1,13 @@
 import axios from "axios";
 import React from "react";
-import { ActivityIndicator, Text, View, FlatList } from "react-native";
-import { useQuery } from "react-query";
+import {
+  ActivityIndicator,
+  FlatList,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { queryCache, useQuery } from "react-query";
 import { apiUrl } from "../libs/vars";
 
 const fetchLanguageList = async () => {
@@ -10,7 +16,7 @@ const fetchLanguageList = async () => {
   return data;
 };
 
-export default function Languages() {
+export default function Languages(props) {
   const { status, data, error } = useQuery("languages", fetchLanguageList);
 
   if (status === "loading") {
@@ -19,7 +25,13 @@ export default function Languages() {
 
   const RenderLanguages = ({ item }) => {
     return (
-      <View style={{ margin: 10 }}>
+      <TouchableOpacity
+        onPress={() => {
+          queryCache.setQueryData("selectedLanguage", item);
+          props.navigation.pop();
+        }}
+        style={{ margin: 10 }}
+      >
         <Text
           style={{
             fontWeight: "600",
@@ -28,7 +40,7 @@ export default function Languages() {
         >
           {item.name}
         </Text>
-      </View>
+      </TouchableOpacity>
     );
   };
 

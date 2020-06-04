@@ -1,7 +1,13 @@
 import axios from "axios";
 import React from "react";
-import { ActivityIndicator, Text, View, FlatList } from "react-native";
-import { useQuery } from "react-query";
+import {
+  ActivityIndicator,
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
+import { useQuery, queryCache } from "react-query";
 import { apiUrl } from "../libs/vars";
 
 const fetchCategoryList = async () => {
@@ -10,7 +16,7 @@ const fetchCategoryList = async () => {
   return data;
 };
 
-export default function Categories() {
+export default function Categories(props) {
   const { status, data, error } = useQuery("categories", fetchCategoryList);
 
   if (status === "loading") {
@@ -19,7 +25,13 @@ export default function Categories() {
 
   const RenderCategories = ({ item }) => {
     return (
-      <View style={{ margin: 10 }}>
+      <TouchableOpacity
+        onPress={() => {
+          queryCache.setQueryData("selectedCategory", item);
+          props.navigation.pop();
+        }}
+        style={{ margin: 10 }}
+      >
         <Text
           style={{
             fontWeight: "600",
@@ -28,7 +40,7 @@ export default function Categories() {
         >
           {item.name}
         </Text>
-      </View>
+      </TouchableOpacity>
     );
   };
 

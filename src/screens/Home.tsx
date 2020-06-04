@@ -8,17 +8,33 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
-import { useQuery } from "react-query";
+import { useQuery, queryCache } from "react-query";
 import { apiUrl } from "../libs/vars";
 
-const fetchQuestionList = async () => {
-  const { data } = await axios.get(`${apiUrl}/questions`);
+const fetchQuestionList = async (_, params) => {
+  const { data } = await axios.get(`${apiUrl}/questions`, { params });
 
   return data;
 };
 
 export default function Home(props: any) {
-  const { status, data, error } = useQuery("questions", fetchQuestionList);
+  const selectedCategory = queryCache.getQueryData("selectedCategory");
+  const selectedLanguage = queryCache.getQueryData("selectedLanguage");
+
+  const { status, data, error } = useQuery(
+    [
+      "questions",
+      {
+        category_id: selectedCategory ? selectedCategory.id : null,
+        language_id: selectedLanguage ? selectedLanguage.id : null,
+      },
+    ],
+    fetchQuestionList
+  );
+
+  console.log("selectedCategory", selectedCategory);
+
+  console.log("selectedLanguage", selectedLanguage);
 
   if (status === "loading") {
     return <ActivityIndicator />;
