@@ -19,8 +19,9 @@ const fetchQuestionList = async (_, params) => {
 };
 
 export default function Home(props: any) {
+  const [page, setPage] = React.useState(1);
+
   const { selectedCategory, selectedLanguage }: any = useContext(StoreContext);
-  console.log(selectedCategory, selectedLanguage);
 
   const { status, data, error } = useQuery(
     [
@@ -28,6 +29,7 @@ export default function Home(props: any) {
       {
         category_id: selectedCategory ? selectedCategory.id : null,
         language_id: selectedLanguage ? selectedLanguage.id : null,
+        page,
       },
     ],
     fetchQuestionList
@@ -103,6 +105,10 @@ export default function Home(props: any) {
     );
   };
 
+  const LoadMore = () => {
+    setPage(page + 1);
+  };
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#ddd" }}>
       <View
@@ -121,7 +127,7 @@ export default function Home(props: any) {
               textTransform: "uppercase",
             }}
           >
-            {selectedCategory ? selectedCategory.name : "Any Category"}
+            {selectedCategory ? selectedCategory.name : "All Category"}
           </Text>
         </TouchableOpacity>
 
@@ -144,10 +150,8 @@ export default function Home(props: any) {
           keyExtractor={(item: any, index: number) => index.toString()}
           data={data.questions.data}
           renderItem={RenderQuestions}
-          onEndReached={() => console.log("test")}
-          initialNumToRender={8}
-          maxToRenderPerBatch={2}
-          onEndReachedThreshold={0.5}
+          onEndReached={LoadMore}
+          onEndReachedThreshold={0}
         />
       </View>
     </SafeAreaView>
