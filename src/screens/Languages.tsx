@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -7,8 +7,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { queryCache, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import { apiUrl } from "../libs/vars";
+import { StoreContext } from "../provider/Provider";
 
 const fetchLanguageList = async () => {
   const { data } = await axios.get(`${apiUrl}/languages`);
@@ -18,6 +19,7 @@ const fetchLanguageList = async () => {
 
 export default function Languages(props) {
   const { status, data, error } = useQuery("languages", fetchLanguageList);
+  const { setSelectedLanguage }: any = useContext(StoreContext);
 
   if (status === "loading") {
     return <ActivityIndicator />;
@@ -27,7 +29,7 @@ export default function Languages(props) {
     return (
       <TouchableOpacity
         onPress={() => {
-          queryCache.setQueryData("selectedLanguage", item);
+          setSelectedLanguage(item);
           props.navigation.pop();
         }}
         style={{ margin: 10 }}

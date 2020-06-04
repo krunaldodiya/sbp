@@ -1,14 +1,15 @@
 import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import {
   ActivityIndicator,
-  Text,
-  View,
   FlatList,
+  Text,
   TouchableOpacity,
+  View,
 } from "react-native";
-import { useQuery, queryCache } from "react-query";
+import { useQuery } from "react-query";
 import { apiUrl } from "../libs/vars";
+import { StoreContext } from "../provider/Provider";
 
 const fetchCategoryList = async () => {
   const { data } = await axios.get(`${apiUrl}/categories`);
@@ -18,6 +19,7 @@ const fetchCategoryList = async () => {
 
 export default function Categories(props) {
   const { status, data, error } = useQuery("categories", fetchCategoryList);
+  const { setSelectedCategory }: any = useContext(StoreContext);
 
   if (status === "loading") {
     return <ActivityIndicator />;
@@ -27,7 +29,7 @@ export default function Categories(props) {
     return (
       <TouchableOpacity
         onPress={() => {
-          queryCache.setQueryData("selectedCategory", item);
+          setSelectedCategory(item);
           props.navigation.pop();
         }}
         style={{ margin: 10 }}

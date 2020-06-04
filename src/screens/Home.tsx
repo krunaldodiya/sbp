@@ -1,15 +1,16 @@
 import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import {
   ActivityIndicator,
   FlatList,
-  Text,
-  View,
-  TouchableOpacity,
   SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import { useQuery, queryCache } from "react-query";
+import { useQuery } from "react-query";
 import { apiUrl } from "../libs/vars";
+import { StoreContext } from "../provider/Provider";
 
 const fetchQuestionList = async (_, params) => {
   const { data } = await axios.get(`${apiUrl}/questions`, { params });
@@ -18,8 +19,8 @@ const fetchQuestionList = async (_, params) => {
 };
 
 export default function Home(props: any) {
-  const selectedCategory = queryCache.getQueryData("selectedCategory");
-  const selectedLanguage = queryCache.getQueryData("selectedLanguage");
+  const { selectedCategory, selectedLanguage }: any = useContext(StoreContext);
+  console.log(selectedCategory, selectedLanguage);
 
   const { status, data, error } = useQuery(
     [
