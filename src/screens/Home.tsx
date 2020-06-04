@@ -32,10 +32,6 @@ export default function Home(props: any) {
     fetchQuestionList
   );
 
-  console.log("selectedCategory", selectedCategory);
-
-  console.log("selectedLanguage", selectedLanguage);
-
   if (status === "loading") {
     return <ActivityIndicator />;
   }
