@@ -22,7 +22,7 @@ export default function Categories(props) {
   const { setSelectedCategory }: any = useContext(StoreContext);
 
   if (status === "loading") {
-    return <ActivityIndicator />;
+    return <ActivityIndicator style={{ flex: 1, justifyContent: "center" }} />;
   }
 
   const RenderCategories = ({ item }) => {

@@ -22,7 +22,7 @@ export default function Languages(props) {
   const { setSelectedLanguage }: any = useContext(StoreContext);
 
   if (status === "loading") {
-    return <ActivityIndicator />;
+    return <ActivityIndicator style={{ flex: 1, justifyContent: "center" }} />;
   }
 
   const RenderLanguages = ({ item }) => {

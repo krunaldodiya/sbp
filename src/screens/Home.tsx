@@ -34,7 +34,7 @@ export default function Home(props: any) {
   );
 
   if (status === "loading") {
-    return <ActivityIndicator />;
+    return <ActivityIndicator style={{ flex: 1, justifyContent: "center" }} />;
   }
 
   const getColor = (option, answer) => {
